@@ -3,58 +3,52 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-/*************************************************************************
-*  Copyright © 2019-2020 Hypnogic. All rights reserved.
-*------------------------------------------------------------------------
-*  File         :  CreateList.cs
-*  Description  :  Crea los botones en la galeria y manda a llamar
-*                   el explorador de archivos
-*------------------------------------------------------------------------
+/******************************
 *  Author       :  Erick
-*  Version      :  2.0
-*  Date         :  03/09/2020
-*  Description  :  Servidor
-*************************************************************************/
+*  Version      :  0.1
+*  Date         :  020/08/2020
+*******************************/
 
-public class CreateList : MonoBehaviour
+public class CreateGallery : MonoBehaviour
 {
-    #region VARIABLES DE INCIALIZACION
+    #region INITIALIZATION VARIABLES
+
+    //SCRIPTS
     public Gallery_UI _galleryUI;
+
     public GalleryManager _gallerymanager;
 
-    //Referencia del boton que se instanciara en la galeria
+    //UI
     public GameObject _buttonPrefab;
    
-    //Boton a eliminar
     [HideInInspector]
     public Button _delete;
 
-    //Area donde se emparentaran los botones dentro de la galeria
     public RectTransform _contentGallery;
 
-    //Lista donde se alamacenaran los botones que se vayan creando
+    //VARIABLES
     public List<GameObject> _buttonFileList = new List<GameObject>();
 
-    //ID de boton
     public int _index;
 
     #endregion
 
-    #region METODOS DE INICIALIZACION
+    #region INITIALIZATION METHODS
 
     private void Start()
     {
         _galleryUI._addElement = GameObject.Find("AddElement").GetComponent<Button>();
         _galleryUI._addElement.onClick.AddListener(() => _gallerymanager.StartFileBrowser());
+
         _index = 0;
     }
 
     #endregion
 
-    #region METODOS PARA AGREGAR BOTONES A LA GALERIA
+    #region METHODS FOR THE GALLERY
 
-    // TODO: [VMX-545] Establecer función agregar botón
-    public void AddButtonList()
+    //Create and add the button to the gallery
+    public void AddButton()
     {
         int tempIndex = _index;
 
@@ -69,28 +63,25 @@ public class CreateList : MonoBehaviour
 
         _delete = GameObject.Find("ButtonPrefabDelete").GetComponent<Button>();
         _delete.name = "Delete" + "_" + (_index);
-        _delete.onClick.AddListener(() => DeleteButtonList(_spamButton));
+        _delete.onClick.AddListener(() => DeleteButton(_spamButton));
 
         _buttonFileList.Add(_spamButton);
 
         _index += 1;
     }
 
-    public void ClikButtonList(GameObject button)
-    {
-        Debug.Log(button.name + " index:" + button.transform.GetSiblingIndex());
-    }
-
-    #endregion
-
-    #region METODOS PARA ELIMINAR LOS BOTONES DE LA GALERIA
-
-    // TODO: [VMX-547] Crear función eliminar
-    public void DeleteButtonList(GameObject button)
+    //Remove the gallery button
+    private void DeleteButton(GameObject button)
     {
         _buttonFileList.Remove(button);
         Destroy(button);
         _index -= 1;
+    }
+
+    //Play button
+    public void ClikButtonList(GameObject button)
+    {
+        Debug.Log(button.name + " index: " + button.transform.GetSiblingIndex());
     }
 
     #endregion

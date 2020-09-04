@@ -3,56 +3,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*************************************************************************
-*  Copyright © 2019-2020 Hypnogic. All rights reserved.
-*------------------------------------------------------------------------
-*  File         :  GalleryManager.cs
-*  Description  :  Contiene los metodos necesarios para crear una galeria
-*------------------------------------------------------------------------
+/******************************
 *  Author       :  Erick
-*  Version      :  2.0
-*  Date         :  03/09/2020
-*  Description  :  Servidor
-*************************************************************************/
+*  Version      :  0.1
+*  Date         :  020/08/2020
+*******************************/
 
 public class GalleryManager : MonoBehaviour
 {
-    #region VARIABLES DE INICIALIZACION
+    #region INITIALIZATION VARIABLES
 
+    //SCRIPTS
     public Gallery_UI _galleryUI;
-    public CreateList _createList;
 
-    [Tooltip("Lista base para la galeria")]
+    public CreateGallery _createGallery;
+
+    //VARIABLES
     public List<MediaFile> _mediaFiles = new List<MediaFile>();
 
-    [Tooltip("Extensiones de archivo compatibles con la escena actual")]
-    public string[] _fileExtension;
-
-    public Sprite[] _icons;
-
-    [Tooltip("Archivo actual seleccionado")]
     private string _currentFile;
+
+    public string[] _fileExtension;
 
     public string _currenteExtension;
 
     [HideInInspector]
     public int _currenteExtensionValue;
 
-    [Header("ACCESOS DIRECTOS")]
-    [Tooltip("Cantidad de accesos directos enla escena")]
+    public Sprite[] _icons;
+
     public int _quickLinkAmount;
 
-    [Tooltip("Nombre del acceso directo")]
     public string[] _folderFiles;
 
-    [Tooltip("Ruta de la carpeta del acceso directo")]
     public string[] _folderPath;
 
     #endregion
 
-    #region METODOS DE INICIALIZACION
+    #region INITIALIZATION METHODS
 
-    //Creamos acceso directos para los archivos que usaremos en la respectiva escena
+    //Create QuickLinks
     private void QuickLinks()
     {
         for (int i = 0; i < _quickLinkAmount; i++) FileBrowser.AddQuickLink(_folderFiles[i], _folderPath[i]);
@@ -60,9 +50,8 @@ public class GalleryManager : MonoBehaviour
 
     #endregion
 
-    #region METODOS PARA ABRIR(INSTANCIAR) EXPLORADOR
+    #region METHODS TO OPEN (INSTANCE) EXPLORER
 
-    // TODO: [VMX-550] Abrir ventana explorador de archivos
     public void StartFileBrowser()
     {
         FileBrowser.SetFilters(true, new FileBrowser.Filter("Fotos", ".jpg", ".png"), new FileBrowser.Filter("Videos", ".mp4"),
@@ -75,7 +64,7 @@ public class GalleryManager : MonoBehaviour
         StartCoroutine(ShowLoadDialogCoroutine());
     }
 
-    // TODO: [VMX-551] Seleccionar elemento y guardar referencia
+    // Credits: https://github.com/yasirkula/UnitySimpleFileBrowser
     IEnumerator ShowLoadDialogCoroutine()
     {
         yield return FileBrowser.WaitForLoadDialog(false, true, null, "Load File", "ACEPTAR");
@@ -90,36 +79,35 @@ public class GalleryManager : MonoBehaviour
 
             GetExtension(FileBrowser._currentFile, _fileExtension);
 
-            _createList.AddButtonList();
+            _createGallery.AddButton();
             byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(FileBrowser.Result[0]);
         }
 
         AddFile2Gallery();
-        InsertMediaFile2List(_createList._index - 1, FileBrowser._currentFile.Replace(_currenteExtension, string.Empty), _currenteExtension, FileBrowser._sharedPath);
+        InsertMediaFile2List(_createGallery._index - 1, FileBrowser._currentFile.Replace(_currenteExtension, string.Empty), _currenteExtension, FileBrowser._sharedPath);
     }
 
     #endregion
 
-    #region METODOS PARA INSERTAR ELMENTOS A LA GALERIA
+    #region METHODS TO INSERT ITEMS TO THE GALLERY
 
-    //creamos un nuevo espacio en la lista y mandamos la instruccion por red para que el cliente cree un espacio en su propia lista
+    //Create a new space in the list
     public void AddFile2Gallery()
     {
         _mediaFiles.Add(new MediaFile());
     }
 
-    // TODO: [VMX-552] Agregar nombre de archivo al botón
-    //Metodo para insertar los archivos a la lista base
+    //Insert files to base list
     public void InsertMediaFile2List(int index, string name, string extension, string path)
     {
         _mediaFiles[index]._fileName = name;
         _galleryUI._buttonText.text = _mediaFiles[index]._fileName;
-        _createList._galleryUI._buttonIcon.sprite = _icons[_currenteExtensionValue];
+        _createGallery._galleryUI._buttonIcon.sprite = _icons[_currenteExtensionValue];
         _mediaFiles[index]._fileExtension = extension;
         _mediaFiles[index]._path = path;
     }
 
-    //Obtenermos el tipo de exrencion del archivo
+    //Gets the type of file extension
     public string[] GetExtension(string currentFiile, string[] extension)
     {
         for (int i = 0; i < extension.Length; i++)
@@ -136,7 +124,7 @@ public class GalleryManager : MonoBehaviour
     #endregion
 }
 
-#region Clase anidada
+#region NESTED CLASS
 
 //Clase para los formatos de archivos
 [System.Serializable]

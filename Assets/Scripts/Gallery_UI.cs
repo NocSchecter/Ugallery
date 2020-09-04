@@ -4,8 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/******************************
+*  Author       :  Erick
+*  Version      :  0.1
+*  Date         :  020/08/2020
+*******************************/
+
 public class Gallery_UI : MonoBehaviour
 {
+    #region INITIALIZATION VARIABLES
+
+    //Prefab button components
     [SerializeField]
     public GameObject _buttonPrefab;
 
@@ -15,32 +24,7 @@ public class Gallery_UI : MonoBehaviour
     public Image _buttonIcon;
 
     [HideInInspector]
-    public SVGImage _iconState;
-
-    [HideInInspector]
-    public SVGImage _hoverSelect;
-
-    [HideInInspector]
-    public SVGImage _hoverSelectPlay;
-
-    [HideInInspector]
-    public Button _delete;
-
-    [HideInInspector]
-    public TextMeshProUGUI _tagAdd;
-    [HideInInspector]
     public Button _addElement;
 
-    public RectTransform _contentGallery;
-
-    [HideInInspector]
-    public List<GameObject> _buttonFileList = new List<GameObject>();
-
-    [HideInInspector]
-    public List<SVGImage> _iconPlay = new List<SVGImage>();
-
-    [HideInInspector]
-    public List<SVGImage> _listHoverSelect = new List<SVGImage>();
-    [HideInInspector]
-    public List<SVGImage> _listHoverSelectPlay = new List<SVGImage>();
+    #endregion
 }
