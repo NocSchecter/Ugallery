@@ -25,7 +25,7 @@ public class GalleryManager : MonoBehaviour
 
     public string[] _fileExtension;
 
-    public string _currenteExtension;
+    private string _currenteExtension;
 
     [HideInInspector]
     public int _currenteExtensionValue;
@@ -105,6 +105,13 @@ public class GalleryManager : MonoBehaviour
         _createGallery._galleryUI._buttonIcon.sprite = _icons[_currenteExtensionValue];
         _mediaFiles[index]._fileExtension = extension;
         _mediaFiles[index]._path = path;
+    }
+
+    public void CheckDeletion(int index)
+    {
+        _mediaFiles.RemoveAt(index);
+        if (_mediaFiles.Count == 0) _currenteExtension = "";
+        Debug.Log("Borraste el elemento: " + index);
     }
 
     //Gets the type of file extension

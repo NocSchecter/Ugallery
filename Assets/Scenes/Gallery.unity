@@ -569,14 +569,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _galleryUI: {fileID: 1750452972}
-  _createList: {fileID: 1750452969}
+  _createGallery: {fileID: 1750452969}
   _mediaFiles: []
   _fileExtension:
   - .obj
-  _icons:
-  - {fileID: 21300000, guid: 229ee6fbd02f1b0458c40254a8733a8e, type: 3}
   _currenteExtension: 
   _currenteExtensionValue: 0
+  _icons:
+  - {fileID: 21300000, guid: 229ee6fbd02f1b0458c40254a8733a8e, type: 3}
   _quickLinkAmount: 1
   _folderFiles:
   - Modelos
@@ -598,17 +598,7 @@ MonoBehaviour:
     type: 3}
   _buttonText: {fileID: 0}
   _buttonIcon: {fileID: 0}
-  _iconState: {fileID: 0}
-  _hoverSelect: {fileID: 0}
-  _hoverSelectPlay: {fileID: 0}
-  _delete: {fileID: 0}
-  _tagAdd: {fileID: 0}
   _addElement: {fileID: 0}
-  _contentGallery: {fileID: 1894337468}
-  _buttonFileList: []
-  _iconPlay: []
-  _listHoverSelect: []
-  _listHoverSelectPlay: []
 --- !u!1 &1775473522
 GameObject:
   m_ObjectHideFlags: 0

@@ -73,6 +73,7 @@ public class CreateGallery : MonoBehaviour
     //Remove the gallery button
     private void DeleteButton(GameObject button)
     {
+        _gallerymanager.CheckDeletion(button.transform.GetSiblingIndex());
         _buttonFileList.Remove(button);
         Destroy(button);
         _index -= 1;
