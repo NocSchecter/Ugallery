@@ -67,7 +67,7 @@ public class GalleryManager : MonoBehaviour
     // Credits: https://github.com/yasirkula/UnitySimpleFileBrowser
     IEnumerator ShowLoadDialogCoroutine()
     {
-        yield return FileBrowser.WaitForLoadDialog(false, true, null, "Load File", "ACEPTAR");
+        yield return FileBrowser.WaitForLoadDialog(false, true, null, "Load File", "Ok");
 
         if (FileBrowser.Success)
         {
@@ -111,7 +111,7 @@ public class GalleryManager : MonoBehaviour
     {
         _mediaFiles.RemoveAt(index);
         if (_mediaFiles.Count == 0) _currenteExtension = "";
-        Debug.Log("Borraste el elemento: " + index);
+        Debug.Log("Element deleted: " + index);
     }
 
     //Gets the type of file extension
