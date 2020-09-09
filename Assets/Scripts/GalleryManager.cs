@@ -95,6 +95,7 @@ public class GalleryManager : MonoBehaviour
     public void AddFile2Gallery()
     {
         _mediaFiles.Add(new MediaFile());
+        _galleryUI._listCounter.text = "Files: " + _mediaFiles.Count.ToString();
     }
 
     //Insert files to base list

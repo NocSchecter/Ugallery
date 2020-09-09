@@ -26,5 +26,7 @@ public class Gallery_UI : MonoBehaviour
     [HideInInspector]
     public Button _addElement;
 
+    public Text _listCounter;
+
     #endregion
 }

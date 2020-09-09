@@ -74,6 +74,7 @@ public class CreateGallery : MonoBehaviour
     private void DeleteButton(GameObject button)
     {
         _gallerymanager.CheckDeletion(button.transform.GetSiblingIndex());
+        _galleryUI._listCounter.text = "Files: " + _gallerymanager._mediaFiles.Count.ToString();
         _buttonFileList.Remove(button);
         Destroy(button);
         _index -= 1;
