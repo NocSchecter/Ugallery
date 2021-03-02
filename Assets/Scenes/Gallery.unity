@@ -573,15 +573,17 @@ MonoBehaviour:
   _createGallery: {fileID: 1750452969}
   _mediaFiles: []
   _fileExtension:
-  - .obj
+  - .jpg
+  - .png
   _currenteExtensionValue: 0
   _icons:
-  - {fileID: 21300000, guid: 229ee6fbd02f1b0458c40254a8733a8e, type: 3}
+  - {fileID: 21300000, guid: 0b776b82cf033eb4ea8d948d5e5872e8, type: 3}
+  - {fileID: 21300000, guid: 0b776b82cf033eb4ea8d948d5e5872e8, type: 3}
   _quickLinkAmount: 1
   _folderFiles:
-  - Modelos
+  - Images
   _folderPath:
-  - C:\\VR-MEDXP\\VR-MEDXP_Data\\StreamingAssets\\Models
+  - C:\Images
 --- !u!114 &1750452972
 MonoBehaviour:
   m_ObjectHideFlags: 0
