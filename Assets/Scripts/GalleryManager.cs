@@ -9,6 +9,7 @@ using UnityEngine;
 *  Date         :  020/08/2020
 *******************************/
 
+
 public class GalleryManager : MonoBehaviour
 {
     #region INITIALIZATION VARIABLES
